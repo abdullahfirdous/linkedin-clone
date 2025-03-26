@@ -1,19 +1,33 @@
-// import firebase from 'firebase'
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import {
+    getAuth,
+    updateProfile,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from 'firebase/auth'
 
-// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//     apiKey: 'AIzaSyCO1I3NjbpaeQGgifGBQtqhsIrQYW0zChs',
-//     authDomain: 'linkedin-clone-6170e.firebaseapp.com',
-//     projectId: 'linkedin-clone-6170e',
-//     storageBucket: 'linkedin-clone-6170e.firebasestorage.app',
-//     messagingSenderId: '926964873777',
-//     appId: '1:926964873777:web:0ee58d90734d15b5153310',
-//     measurementId: 'G-WRH2Z9CLLY',
-// }
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+}
 
-// // Initialize Firebase
-// const firebaseApp = firebase.initializeApp(firebaseConfig)
-// const db = firebaseApp.firestore()
-// const auth = firebase.auth()
+// Initialize Firebase
+initializeApp(firebaseConfig)
 
-// export { db, auth }
+// Initializing Database (Firestore)
+const db = getFirestore()
+const auth = getAuth()
+
+export {
+    db,
+    auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+}

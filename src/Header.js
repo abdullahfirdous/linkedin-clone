@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './Header.css'
 import HeaderOption from './HeaderOption'
 
 // importing icons
@@ -11,10 +11,16 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
 import TextsmsIcon from '@mui/icons-material/Textsms'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 
+import { useDispatch } from 'react-redux'
+import { auth } from './firebase'
+import { logout } from './features/userSlice'
+
 function Header() {
+    const dispatch = useDispatch()
+
     const logoutOfApp = () => {
-        dispatchEvent(logout())
-        AuthenticatorAssertionResponse.signOut()
+        dispatch(logout())
+        auth.signOut()
     }
 
     return (
@@ -37,11 +43,7 @@ function Header() {
                 <HeaderOption Icon={BusinessCenterIcon} title='Jobs' />
                 <HeaderOption Icon={TextsmsIcon} title='Messaging' />
                 <HeaderOption Icon={NotificationsIcon} title='Notifications' />
-                <HeaderOption
-                    avatar='https://media.licdn.com/dms/image/v2/D4D03AQEU4EmC…eta&t=d70xNWz9qS5g_k9GsPPsUp06Tb4CXLXv3jwAtMIRMr8'
-                    title='Me'
-                    onClick={logoutOfApp}
-                />
+                <HeaderOption avatar={true} title='Me' onClick={logoutOfApp} />
             </div>
         </div>
     )
